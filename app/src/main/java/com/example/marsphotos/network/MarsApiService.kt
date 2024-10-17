@@ -1,7 +1,9 @@
 package com.example.marsphotos.network
 
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import kotlinx.serialization.json.Json
+import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
-import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.create
 import retrofit2.http.GET
 
@@ -13,8 +15,8 @@ private const val BASE_URL =
 private val retrofit = Retrofit.Builder()
     // fábrica de conversión para crear una API de servicios web
     // el conversor indica a Retrofit qué hacer con los datos que obtiene del servicio web
-    // queremos recuperar una respuesta JSON del servicio web y mostrarla como String
-    .addConverterFactory(ScalarsConverterFactory.create())
+    // queremos recuperar una respuesta JSON del servicio web y mostrarla como imagen
+    .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
     // añado la URL base para el servicio web
     .baseUrl(BASE_URL)
     // creamos el objeto Retrofit
