@@ -13,3 +13,7 @@ private val retrofit = Retrofit.Builder()
     // el conversor indica a Retrofit qué hacer con los datos que obtiene del servicio web
     // queremos recuperar una respuesta JSON del servicio web y mostrarla como String
     .addConverterFactory(ScalarsConverterFactory.create())
+    // añado la URL base para el servicio web
+    .baseUrl(BASE_URL)
+    // creamos el objeto Retrofit
+    .build()
