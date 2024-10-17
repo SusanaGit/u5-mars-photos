@@ -27,7 +27,8 @@ interface MarsApiService {
     // entonces el recurso que quiero consultar es: base de la url / photos
     @GET("photos")
     // obtener la String de respuesta del servicio web
-    fun getPhotos(): String
+    // suspend -> para que sea asíncrona y no bloquee el subproceso de llamada
+    suspend fun getPhotos(): String
 }
 
 // defino el objeto público MarsApi
