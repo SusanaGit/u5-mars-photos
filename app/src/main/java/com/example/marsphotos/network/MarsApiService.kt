@@ -2,6 +2,7 @@ package com.example.marsphotos.network
 
 import retrofit2.Retrofit
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import retrofit2.http.GET
 
 // URL base del servicio web
 private const val BASE_URL =
@@ -17,3 +18,13 @@ private val retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL)
     // creamos el objeto Retrofit
     .build()
+
+// define cómo Retrofit se comunica con el servidor web mediante solicitudes HTTP
+interface MarsApiService {
+    // es una solicitud GET
+    // "photos" es el endpoint (extremo), sería la parte de la url que va después de la base url
+    // entonces el recurso que quiero consultar es: base de la url / photos
+    @GET("photos")
+    // obtener la String de respuesta del servicio web
+    fun getPhotos(): String
+}
