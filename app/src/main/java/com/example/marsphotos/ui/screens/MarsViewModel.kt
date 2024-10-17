@@ -60,10 +60,10 @@ class MarsViewModel : ViewModel() {
         // inicio la coroutine
         viewModelScope.launch {
             try {
-                // guardo la respuesta en listResult
                 val listResult = MarsApi.retrofitService.getPhotos()
-                // asigno el resultado que se acaba de recibir del servidor backend al objeto mutable marsUiState
-                marsUiState = MarsUiState.Success(listResult)
+                marsUiState = MarsUiState.Success(
+                    "Success: ${listResult.size} Mars photos retrieved"
+                )
             } catch (e: IOException) {
                 println(e.message)
                 marsUiState = MarsUiState.Error

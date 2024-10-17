@@ -4,7 +4,6 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFact
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
-import retrofit2.create
 import retrofit2.http.GET
 
 // URL base del servicio web
@@ -30,7 +29,7 @@ interface MarsApiService {
     @GET("photos")
     // obtener la String de respuesta del servicio web
     // suspend -> para que sea asíncrona y no bloquee el subproceso de llamada
-    suspend fun getPhotos(): String
+    suspend fun getPhotos(): List<MarsPhoto>
 }
 
 // defino el objeto público MarsApi
