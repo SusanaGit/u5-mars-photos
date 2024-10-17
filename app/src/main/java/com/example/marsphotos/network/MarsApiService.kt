@@ -2,6 +2,7 @@ package com.example.marsphotos.network
 
 import retrofit2.Retrofit
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import retrofit2.create
 import retrofit2.http.GET
 
 // URL base del servicio web
@@ -27,4 +28,14 @@ interface MarsApiService {
     @GET("photos")
     // obtener la String de respuesta del servicio web
     fun getPhotos(): String
+}
+
+// defino el objeto público MarsApi
+// es singleton -> solo se creará una instancia en toda la ejecución del programa
+object MarsApi {
+    // se encarga de manejar las llamadas al servicio web de Retrofit
+    // lazy -> inicialización diferida: retrasa la creación de un objeto o variable hasta que se necesita
+    val retrofitService : MarsApiService by lazy {
+        retrofit.create(MarsApiService::class.java)
+    }
 }
