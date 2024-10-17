@@ -24,6 +24,21 @@ import com.example.marsphotos.network.MarsApi
 import kotlinx.coroutines.launch
 import java.io.IOException
 
+/* sealed -> interfaz sellada -> todas las subclases o implementaciones
+de la interfaz deben estar declaradas en el mismo archivo.
+Ayuda al compilador a manejar los estados de manera exhaustiva.
+*/
+// la app tiene 3 estados posibles: Success, Error, Loading
+sealed interface MarsUiState {
+    // Success -> cuando los datos se hayan recuperado correctamente del servidor
+    // Almaceno los datos obtenidos del servidor en el String photos
+    data class Success (val photos: String) : MarsUiState
+    // Error -> objeto único para representar un estado de error
+    object Error : MarsUiState
+    // Loading -> objeto único para repreentar que la app está esperando datos
+    object Loading : MarsUiState
+}
+
 class MarsViewModel : ViewModel() {
     /** The mutable State that stores the status of the most recent request */
     var marsUiState: String by mutableStateOf("")
